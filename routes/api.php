@@ -14,3 +14,4 @@ use Illuminate\Http\Request;
 */
 
 Route::POST('/album/getPhotos', 'Ajax\AlbumController@getAlbumPhotos');
+Route::POST('/page/getPage', 'Ajax\PageController@getPage');

@@ -28,34 +28,35 @@
 					@endforeach
 					</ul>
 					<div class="t-c_content">
-						
-						<h3>Lorem ipsum</h3>
-						<p><strong>Lorem ipsum</strong> dolor sit amet, consectetur adipisicing elit. Id fugit velit aliquam deleniti maxime asperiores adipisci necessitatibus reprehenderit ratione impedit, <a href="#">officia eum dolorum</a>, debitis sapiente quae pariatur cupiditate commodi illum.</p>
-						<blockquote>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime hic dignissimos delectus officia, veniam saepe sit, repellendus debitis reiciendis sint ducimus ipsa reprehenderit perferendis nisi natus omnis atque quam a.</blockquote>
-						<p><em>Lorem ipsum</em> dolor sit amet, consectetur adipisicing elit. Nostrum, culpa asperiores quae sequi quasi, possimus suscipit tempora officia provident molestiae animi nobis enim ab amet aliquam. Molestias quos illo sunt.</p>
-						
-						<img src="/img/2.jpg" width="100%" height="auto">
-												
-						<h4>Lorem ipsum</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam eveniet velit quas ratione, laudantium facere sapiente minima in fugiat, praesentium labore odit eos tempore amet voluptatem assumenda esse provident consectetur.</p>
-						<ol>
-							<li>Item-01</li>
-							<li>Item-02</li>
-							<li>Item-03</li>
-							<li>Item-04</li>
-							<li>Item-05</li>
-						</ol>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam eveniet velit quas ratione, laudantium facere sapiente minima in fugiat, praesentium labore odit eos tempore amet voluptatem assumenda esse provident consectetur.</p>
-						<ul>
-							<li>Item-01</li>
-							<li>Item-02</li>
-							<li>Item-03</li>
-							<li>Item-04</li>
-							<li>Item-05</li>
-						</ul>
+						{!! $content->pg_text !!}
 					</div>
 				</div>
 			</div>
 		</section>
 	</main>
+
+@endsection
+
+
+@section('pageScripts')
+	<script>
+		$(document).ready(function(){
+			$('p[data-pageID]').click(function(){
+				var id = $(this).attr('data-pageID');
+				$.ajax({
+					type: 'POST',
+					url: '/api/page/getPage',
+					data: 'id=' + id,
+					success: function(result)
+					{
+						$('.t-c_content').empty();
+						$('.t-c_content').append(result.data.pg_text);
+					},
+					error: function(){
+							console.error('AJAX Fatal error');
+					}
+				});
+			});
+		});
+	</script>
 @endsection

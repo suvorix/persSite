@@ -5,14 +5,14 @@
 </head>
 
 <body>
-	
 	@include('includes.header')
 	@yield('headerBottom')
 	
 	@yield('pageContent')
 	
 	@include('includes.footer')
-	@include('includes.scripts')
 	
+	@include('includes.scripts')
+	@yield('pageScripts')
 </body>
 </html>

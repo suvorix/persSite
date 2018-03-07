@@ -65,16 +65,32 @@ $(document).ready(function(){
 		$('.i-show-photos .swiper-wrapper').empty();
 	});
 	$('.i-photos .album').click(function(){
+		var id = $(this).attr('data-id');
 		$('.i-show-photos').removeClass('hidden');
 		$('body').css('overflow-y', 'hidden');
 		$('.i-show-photos .swiper-wrapper').removeAttr('style');
-		$('.i-show-photos .swiper-wrapper').append('<div class="swiper-slide"><div class="swiper-zoom-container"><img src="/img/18.jpg"></div></div><div class="swiper-slide"><div class="swiper-zoom-container"><img src="/img/2.jpg"></div></div><div class="swiper-slide"><div class="swiper-zoom-container"><img src="/img/8.jpg"></div></div>');
-		gallery = new Swiper('.swiper-container-gellery', {
-			zoom: true,
-			navigation: {
-				nextEl: '.swiper-button-next-gellery',
-				prevEl: '.swiper-button-prev-gellery',
+		var photos = '';
+		$.ajax({
+			type: "POST",
+			url: '/api/album/getPhotos',
+			data: 'id=' + id,
+			success: function(result)
+			{
+				(result.data).forEach(function(item, i, arr){
+					photos = result.data[0].pht_img;
+					$('.i-show-photos .swiper-wrapper').append('<div class="swiper-slide"><div class="swiper-zoom-container"><img src="' + $.parseJSON(item.pht_img).max + '"></div></div>');
+				});
+				gallery = new Swiper('.swiper-container-gellery', {
+					zoom: true,
+					navigation: {
+						nextEl: '.swiper-button-next-gellery',
+						prevEl: '.swiper-button-prev-gellery',
+					},
+				});
 			},
+			error: function(){
+					console.error('AJAX Fatal error');
+			}
 		});
 	});
 	

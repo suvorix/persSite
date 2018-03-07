@@ -21,6 +21,7 @@ class PageController extends Controller
 		
 	public function methodological ()
 	{
+		$content = Page::select('id_page', 'pg_name', 'pg_text')->first();
 		$pageCat = array();
 		$categories = Category::select('id_category', 'ctg_parentId', 'ctg_name', 'ctg_description')->where('ctg_page', 'methodological')->get();
 		foreach($categories as $category)
@@ -34,7 +35,8 @@ class PageController extends Controller
 		$pageNoCat = Page::select('id_page', 'pg_name')->where('pg_catId', 0)->orderBy('pg_date', 'asc')->get();
 		return view('methodological')->with([
 			'sidebarListPageCat' => $pageCat,
-			'sidebarListPageNoCat' => $pageNoCat
+			'sidebarListPageNoCat' => $pageNoCat,
+			'content' => $content
 		]);
 	}
 	
