@@ -21,7 +21,7 @@ class PageController extends Controller
 		
 	public function methodological ()
 	{
-		$content = Page::select('id_page', 'pg_name', 'pg_text')->first();
+		$content = Page::select('id_page', 'pg_name', 'pg_text')->where('pg_group', 'methodological')->first();
 		$pageCat = array();
 		$categories = Category::select('id_category', 'ctg_parentId', 'ctg_name', 'ctg_description')->where('ctg_page', 'methodological')->get();
 		foreach($categories as $category)
@@ -32,7 +32,10 @@ class PageController extends Controller
 			array_push($catArr, $pageInfo);
 			array_push($pageCat, $catArr);			
 		}
-		$pageNoCat = Page::select('id_page', 'pg_name')->where('pg_catId', 0)->orderBy('pg_date', 'asc')->get();
+		$pageNoCat = Page::select('id_page', 'pg_name')->where([
+			['pg_catId', 0],
+			['pg_group', 'methodological']
+		])->orderBy('pg_date', 'asc')->get();
 		return view('methodological')->with([
 			'sidebarListPageCat' => $pageCat,
 			'sidebarListPageNoCat' => $pageNoCat,
@@ -42,12 +45,50 @@ class PageController extends Controller
 	
 	public function student ()
 	{
-		return view('student');
+		$content = Page::select('id_page', 'pg_name', 'pg_text')->where('pg_group', 'student')->first();
+		$pageCat = array();
+		$categories = Category::select('id_category', 'ctg_parentId', 'ctg_name', 'ctg_description')->where('ctg_page', 'student')->get();
+		foreach($categories as $category)
+		{
+			$catArr = array();
+			$pageInfo = Page::select('id_page', 'pg_name')->where('pg_catId', $category->id_category)->orderBy('pg_date', 'asc')->get();
+			array_push($catArr, $category);
+			array_push($catArr, $pageInfo);
+			array_push($pageCat, $catArr);			
+		}
+		$pageNoCat = Page::select('id_page', 'pg_name')->where([
+			['pg_catId', 0],
+			['pg_group', 'student']
+		])->orderBy('pg_date', 'asc')->get();
+		return view('student')->with([
+			'sidebarListPageCat' => $pageCat,
+			'sidebarListPageNoCat' => $pageNoCat,
+			'content' => $content
+		]);
 	}
 	
 	public function parents ()
 	{
-		return view('parents');
+		$content = Page::select('id_page', 'pg_name', 'pg_text')->where('pg_group', 'parents')->first();
+		$pageCat = array();
+		$categories = Category::select('id_category', 'ctg_parentId', 'ctg_name', 'ctg_description')->where('ctg_page', 'parents')->get();
+		foreach($categories as $category)
+		{
+			$catArr = array();
+			$pageInfo = Page::select('id_page', 'pg_name')->where('pg_catId', $category->id_category)->orderBy('pg_date', 'asc')->get();
+			array_push($catArr, $category);
+			array_push($catArr, $pageInfo);
+			array_push($pageCat, $catArr);			
+		}
+		$pageNoCat = Page::select('id_page', 'pg_name')->where([
+			['pg_catId', 0],
+			['pg_group', 'parents']
+		])->orderBy('pg_date', 'asc')->get();
+		return view('parents')->with([
+			'sidebarListPageCat' => $pageCat,
+			'sidebarListPageNoCat' => $pageNoCat,
+			'content' => $content
+		]);
 	}
 	
 	public function reviews ()

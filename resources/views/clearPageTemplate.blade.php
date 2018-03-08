@@ -15,3 +15,7 @@
 <p>CONTENT</p>
 
 @endsection
+
+@section('pageScripts')
+
+@endsection

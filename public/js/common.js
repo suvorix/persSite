@@ -120,4 +120,5 @@ $(document).ready(function(){
 			$(this).children('.si-icon-drop').toggleClass('close');
 		}
 	});
+	$('test').click();
 });

@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>404 – страница не найдена</title>
+	<title>404 – страница не найдена</title>
 	<meta charset="utf-8">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 	<style type="text/css">

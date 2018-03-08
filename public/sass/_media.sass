@@ -1,0 +1,112 @@
+@import "vars"
+
+/*==========  Desktop First  ==========*/
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px)
+	/**/
+
+
+@media only screen and (max-width : 1024px)
+			
+	.i-info 
+		& .content_position
+			flex-flow: column
+	
+		& .info_about 
+			margin-right: 0px
+	
+		& .info_courses 
+			margin-top: 30px
+			margin-left: 0px
+	
+	.a-photos .images .images_item
+		width: 31%
+
+
+@media only screen and (max-width : 992px)
+	
+	.main_two-columns
+		display: block
+	
+	.header .nav
+		& .nav_menu-btn
+			display: block
+	
+		& .nav_menu-list
+			position: absolute
+			top: 0
+			left: -100%
+			width: 70vw
+			height: 100vh
+			background: $light
+			z-index: 200
+			overflow-y: auto
+			transition: .2s left
+			
+			&.active
+				left: 0
+		
+			& .nav_link
+				display: block
+				color: $text-color
+				padding: 20px
+		
+				&.active,	&:hover
+					color: $accent
+		
+			& .nav_title, & .nav_close
+				display: block
+		
+			& .nav_title
+				background: $dark
+				color: $light
+				padding: 20px
+		
+			& .nav_close
+				display: block
+				color: $light
+				cursor: pointer
+				position: absolute
+				top: 0
+				right: 0
+				padding: 20px
+	
+	.i-teacher 
+		& .content_position
+			flex-flow: column
+			align-items: normal
+	.footer
+		& .content_position
+			flex-flow: column
+			align-items: center
+	
+		& .footer_nav
+			display: none
+		
+		& .footer_info
+			margin-bottom: 40px
+		& .footer_feedback
+			width: 100%
+	
+	
+@media only screen and (max-width : 768px)
+	
+	.a-photos .images .images_item
+		width: 48%
+	
+	.t-c_sidebar
+		max-width: 100%
+	
+	.t-c_content
+		padding: 20px
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px)
+	.a-photos .images .images_item
+		width: 100%
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 320px)
+	/**/
+

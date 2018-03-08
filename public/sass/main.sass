@@ -1,0 +1,136 @@
+@import "vars"
+@import "fonts"
+@import "libs"
+@import "base"
+
+.i-section-title
+	font-size: 1.7em
+	line-height: 1em
+	text-transform: uppercase
+	color: $dark
+
+.i-teacher
+	padding: 85px 0px
+	position: relative
+	background: radial-gradient(farthest-side at left top, #313745 0%, #20242c 100%) #313745
+	color: $light
+
+	& .content_position
+		display: flex
+		align-items: center
+
+	& .teacher_name, & .teacher_info
+		flex: 1
+
+	& .teacher_name
+		font-size: 3em
+		line-height: 1em
+		font-weight: 700
+		text-transform: uppercase
+
+	& .teacher_photo
+		width: 100px
+		height: 100px
+		object-fit: cover
+		position: absolute
+		bottom: -50px
+		left: 50%
+		margin-left: -50px
+		border-radius: 50px
+		border: 10px solid $light
+
+.i-info
+	padding: 50px 0px
+	padding-top: 100px
+
+	& .content_position
+		display: flex
+	
+	& p
+		color: $text-color
+	
+	& .info_about, & .info_courses
+		flex: 1
+	
+	& .info_about
+		margin-right: 20px
+	
+	& .info_courses
+		margin-left: 20px
+
+.i-photos
+	
+	& .photos_slider
+		margin-top: 20px
+	
+		& .album
+			background-position: center;
+			background-size: cover;
+			position: relative
+			height: 200px
+			cursor: pointer
+	
+			& .album_name
+				overflow: hidden
+				text-overflow: ellipsis
+				white-space: nowrap
+				color: #fff
+				position: absolute
+				bottom: 0
+				width: 100%
+				padding: 35px 15px 15px
+				background-image: url(/img/album_top_shadow.png)
+
+.i-about
+	padding: 50px 0px
+
+.i-show-photos
+	position: fixed
+	top: 0
+	left: 0
+	width: 100%
+	height: 100vh
+	z-index: 100
+	background: rgba(0, 0, 0, 0.8)
+	&.hidden
+		left: -100%
+	
+.swiper-container-gellery
+	position: absolute
+	top: 30px
+	left: 20px
+	right: 20px
+	bottom: 20px
+
+.swiper-slide.gellery
+	overflow: hidden
+
+.r-form
+	padding-top: 50px
+		
+	& button
+		max-width: 300px
+		margin-top: 15px
+		border: none
+		color: $light
+		background: $accent
+		transition: .2s background 
+		cursor: pointer
+		
+		&:hover
+			background: $accent-dop
+	
+.r-all-reviews
+	padding-top: 50px
+	padding-bottom: 30px
+	& .review
+		border: 1px solid #ccc
+		padding: 20px
+		border-radius: 3px
+		margin: 20px 0px
+	
+.metod-content
+	padding: 50px 0px
+	
+	
+@import "media"
