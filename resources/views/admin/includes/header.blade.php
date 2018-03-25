@@ -22,7 +22,8 @@
                     </li>
 -->
                     
-										<li><a href="/admin/albums">Все альбомы</a></li>
+										<li><a href="/admin/albums">Альбомы</a></li>
+										<li><a href="/admin/comments">Отзывы</a></li>
                 </ul>
                 <ul class="nav navbar-top-links navbar-right">
                     <li>

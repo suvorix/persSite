@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Мар 08 2018 г., 13:29
+-- Время создания: Мар 25 2018 г., 14:48
 -- Версия сервера: 5.5.53
 -- Версия PHP: 5.6.29
 
@@ -38,11 +38,10 @@ CREATE TABLE `albums` (
 --
 
 INSERT INTO `albums` (`id_album`, `alb_name`, `alb_image`, `alb_date`) VALUES
-(1, 'Педагогическая деятельность', '{\"min\": \"/img/default.png\", \"max\": \"/img/default.png\"}', '15151515'),
-(2, 'Мастер педагогического труда - 2015', '{\"min\": \"/img/default.png\", \"max\": \"/img/default.png\"}', '15151516'),
-(3, 'Новогодний огонек ПС-15', '{\"min\": \"/img/default.png\", \"max\": \"/img/default.png\"}', '15151517'),
-(4, 'Зимние каникулы', '{\"min\": \"/img/default.png\", \"max\": \"/img/default.png\"}', '15151518'),
-(5, 'Ещё один альбом с очень длинным названием для проверки многоточий', '{\"min\": \"/img/default.png\", \"max\": \"/img/default.png\"}', '15151519');
+(7, 'Педагогическая деятельность', '{\"min\":\"\\/img\\/uploads\\/min-00fb0759.jpg\",\"max\":\"\\/img\\/uploads\\/max-00fb0759.jpg\"}', '1521816662'),
+(8, 'Мастер педагогического труда - 2015', '{\"min\":\"\\/img\\/uploads\\/min-c0e7087b.jpg\",\"max\":\"\\/img\\/uploads\\/max-c0e7087b.jpg\"}', '1521816816'),
+(9, 'Новогодний огонек ПС-15', '{\"min\":\"\\/img\\/uploads\\/min-efb06d51.jpg\",\"max\":\"\\/img\\/uploads\\/max-efb06d51.jpg\"}', '1521816906'),
+(10, 'Зимние каникулы', '{\"min\":\"\\/img\\/uploads\\/min-9085a127.jpg\",\"max\":\"\\/img\\/uploads\\/max-9085a127.jpg\"}', '1521817024');
 
 -- --------------------------------------------------------
 
@@ -78,7 +77,7 @@ CREATE TABLE `comments` (
   `id_comment` int(11) NOT NULL,
   `cmt_name` varchar(255) NOT NULL,
   `cmt_email` varchar(255) NOT NULL,
-  `cmt_text` varchar(500) NOT NULL,
+  `cmt_text` text NOT NULL,
   `cmt_date` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -88,7 +87,11 @@ CREATE TABLE `comments` (
 
 INSERT INTO `comments` (`id_comment`, `cmt_name`, `cmt_email`, `cmt_text`, `cmt_date`) VALUES
 (1, 'suvorix', 'suvorix@vhavke.ru', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit ullam aspernatur, laboriosam repellendus molestiae at debitis. Delectus libero iusto fuga ipsum ducimus doloremque suscipit necessitatibus a consectetur quos. Iste, ex!', '151515'),
-(2, 'Иван Иванов', 'test@email.com', 'В это трудно поверить, но крошечная японская компания Aspark, о которой совсем недавно никто и знать не знал, разработала электрический гиперкар Owl, который обещал победить в разгоне до «сотни» все существующие автомобили для дорог общего пользования. Сказано — сделано! Японцы опубликовали видео чудовищного разгона «Совы» до 100 км/ч с результатом… 1,92 секунды! https://www.popmech.ru/vehicles/411052-yaponcy-pokazali-razgon-do-100-km-ch-za-192-sekundy/?utm_referrer=https%3A%2F%2Fzen.yandex.com', '151516');
+(2, 'Иван Иванов', 'test@email.com', 'В это трудно поверить, но крошечная японская компания Aspark, о которой совсем недавно никто и знать не знал, разработала электрический гиперкар Owl, который обещал победить в разгоне до «сотни» все существующие автомобили для дорог общего пользования. Сказано — сделано! Японцы опубликовали видео чудовищного разгона «Совы» до 100 км/ч с результатом… 1,92 секунды! https://www.popmech.ru/vehicles/411052-yaponcy-pokazali-razgon-do-100-km-ch-za-192-sekundy/?utm_referrer=https%3A%2F%2Fzen.yandex.com', '151516'),
+(16, 'Админ', 'admin@karpusheva.esy.es', 'Тестовый отзыв сделанный из админки.', '1521968872'),
+(17, 'asd', 'nik_suv1999@mail.ru', 'asdsd', '1521977830'),
+(18, 'test123', 'nik_suv1999@mail.ru', 'dasd', '1521977883'),
+(19, 'capchatestt', 'nik_suv1999@mail.ru', 'adsasd', '1521977928');
 
 -- --------------------------------------------------------
 
@@ -136,18 +139,31 @@ CREATE TABLE `photos` (
   `id_photo` int(11) NOT NULL,
   `pht_albumId` int(11) NOT NULL,
   `pht_img` varchar(255) NOT NULL DEFAULT '{"min": "/img/default.png", "max": "/img/default.png"}',
-  `pht_imgDesc` varchar(255) NOT NULL,
   `pht_date` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
 -- Дамп данных таблицы `photos`
 --
 
-INSERT INTO `photos` (`id_photo`, `pht_albumId`, `pht_img`, `pht_imgDesc`, `pht_date`) VALUES
-(1, 1, '{\"min\": \"/img/default.png\", \"max\": \"/img/default.png\"}', 'ImageDescription', '151515'),
-(2, 1, '{\"min\": \"/img/default.png\", \"max\": \"/img/default.png\"}', 'ImageDescription', '151516'),
-(3, 5, '{\"min\": \"/img/uploads/1.jpg\", \"max\": \"/img/uploads/1.jpg\"}', 'ImageDescription', '151516');
+INSERT INTO `photos` (`id_photo`, `pht_albumId`, `pht_img`, `pht_date`) VALUES
+(12, 7, '{\"min\":\"\\/img\\/uploads\\/min-679c8075.jpg\",\"max\":\"\\/img\\/uploads\\/max-679c8075.jpg\"}', '1521816677'),
+(13, 7, '{\"min\":\"\\/img\\/uploads\\/min-d48a45de.jpg\",\"max\":\"\\/img\\/uploads\\/max-d48a45de.jpg\"}', '1521816687'),
+(14, 7, '{\"min\":\"\\/img\\/uploads\\/min-578a7b78.jpg\",\"max\":\"\\/img\\/uploads\\/max-578a7b78.jpg\"}', '1521816698'),
+(15, 7, '{\"min\":\"\\/img\\/uploads\\/min-5e38f175.jpg\",\"max\":\"\\/img\\/uploads\\/max-5e38f175.jpg\"}', '1521816709'),
+(16, 7, '{\"min\":\"\\/img\\/uploads\\/min-3471db5b.jpg\",\"max\":\"\\/img\\/uploads\\/max-3471db5b.jpg\"}', '1521816723'),
+(17, 7, '{\"min\":\"\\/img\\/uploads\\/min-dd7b427f.jpg\",\"max\":\"\\/img\\/uploads\\/max-dd7b427f.jpg\"}', '1521816734'),
+(18, 8, '{\"min\":\"\\/img\\/uploads\\/min-a20ebfd1.jpg\",\"max\":\"\\/img\\/uploads\\/max-a20ebfd1.jpg\"}', '1521816827'),
+(19, 8, '{\"min\":\"\\/img\\/uploads\\/min-6699c825.jpg\",\"max\":\"\\/img\\/uploads\\/max-6699c825.jpg\"}', '1521816837'),
+(20, 9, '{\"min\":\"\\/img\\/uploads\\/min-610cf238.jpg\",\"max\":\"\\/img\\/uploads\\/max-610cf238.jpg\"}', '1521816921'),
+(21, 9, '{\"min\":\"\\/img\\/uploads\\/min-db699a24.jpg\",\"max\":\"\\/img\\/uploads\\/max-db699a24.jpg\"}', '1521816931'),
+(22, 9, '{\"min\":\"\\/img\\/uploads\\/min-12c35c69.jpg\",\"max\":\"\\/img\\/uploads\\/max-12c35c69.jpg\"}', '1521816941'),
+(23, 9, '{\"min\":\"\\/img\\/uploads\\/min-d6542b9d.jpg\",\"max\":\"\\/img\\/uploads\\/max-d6542b9d.jpg\"}', '1521816951'),
+(24, 9, '{\"min\":\"\\/img\\/uploads\\/min-cc51f82a.jpg\",\"max\":\"\\/img\\/uploads\\/max-cc51f82a.jpg\"}', '1521816963'),
+(25, 9, '{\"min\":\"\\/img\\/uploads\\/min-9c3ad12a.jpg\",\"max\":\"\\/img\\/uploads\\/max-9c3ad12a.jpg\"}', '1521816974'),
+(26, 10, '{\"min\":\"\\/img\\/uploads\\/min-8473a31a.jpg\",\"max\":\"\\/img\\/uploads\\/max-8473a31a.jpg\"}', '1521817046'),
+(27, 10, '{\"min\":\"\\/img\\/uploads\\/min-544cfd93.jpg\",\"max\":\"\\/img\\/uploads\\/max-544cfd93.jpg\"}', '1521817056'),
+(28, 10, '{\"min\":\"\\/img\\/uploads\\/min-2bb6183b.jpg\",\"max\":\"\\/img\\/uploads\\/max-2bb6183b.jpg\"}', '1521817067');
 
 --
 -- Индексы сохранённых таблиц
@@ -191,7 +207,7 @@ ALTER TABLE `photos`
 -- AUTO_INCREMENT для таблицы `albums`
 --
 ALTER TABLE `albums`
-  MODIFY `id_album` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_album` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT для таблицы `categories`
 --
@@ -201,7 +217,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT для таблицы `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT для таблицы `pages`
 --
@@ -211,7 +227,7 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT для таблицы `photos`
 --
 ALTER TABLE `photos`
-  MODIFY `id_photo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_photo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

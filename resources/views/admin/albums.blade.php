@@ -30,7 +30,7 @@
                                         </div>
                                     </a>
                                     <div class="actions">
-																			<i class="fa fa-edit" onclick="editAlbum({{ $album->id_album }}, this)" style="position: absolute;top: 0;right: 0;padding: 10px;color: #fff;font-size: 1.3em;cursor: pointer;"></i>
+																			<i class="fa fa-edit" onclick="editAlbum({{ $album->id_album }})" style="position: absolute;top: 0;right: 0;padding: 10px;color: #fff;font-size: 1.3em;cursor: pointer;background: #1ab394;"></i>
 																		</div>
                                 </div>
                             </div>
@@ -43,12 +43,28 @@
 
 @section('adminPageScripts')
 <script>
-	function editAlbum(id, elem)
+	function editAlbum(id)
 	{
-		$(elem).parent().parent().parent().remove();
+		window.location.href = '/admin/editAlbum/' + id;
 	}
 	function delAlbum(id, elem)
 	{
+		$.ajax({
+			url: '/api/album/del',
+			type: 'POST',
+			dataType: 'html',
+			data: 'id=' + id,
+			success: function(result) {
+				var data = $.parseJSON(result);
+				if(data.goto){ window.location.href = data.goto; }
+				if(data.status == 'success'){					
+					alertify.success(data.text);
+				}
+				else{
+					alertify.error(data.text);
+				}
+			}
+		});
 		$(elem).parent().parent().parent().parent().parent().remove();
 	}
 </script>

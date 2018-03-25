@@ -10,7 +10,6 @@
 				<div class="menu-dark_bg hidden"></div>
 			</nav>
 			<div class="sign">
-				<a class="sign_button">Регистрация</a>
 				<a class="sign_button sign_button_main">Вход</a>
 				<div class="sign_dark hidden">
 					<div class="content_position">

@@ -1,15 +1,16 @@
 @extends('admin.layouts.mainAdminPageTemplate')
 
 
-@section('adminPageTitle', 'Все альбомы')
+@section('adminPageTitle', $albumName)
 
 @section('adminPageContent')
 
 <div>
 	<a href="/admin/albums" class="btn btn-white">Назад</a>
-	<a href="/admin/addAlbum" class="btn btn-primary">Добавить фотографии</a>
+	<a href="/admin/addPhoto/{{ $album }}" class="btn btn-primary">Добавить фотографии</a>
 </div>
 <br>
+                       	<h3>{{ $albumName }}</h3>
 <div class="animated fadeInRight">
                     <div class="row">
                         <div class="col-lg-12">
@@ -22,8 +23,7 @@
                                 <div class="file">
                                     <a href="#">
                                        	<div class="actions">
-																					<i class="fa fa-trash" onclick="delPhoto({{ $photo->id_photo }}, this)" style="position: absolute;top: 10px;right: 15px;color: #fff;font-size: 1.3em;"></i>
-																					<i class="fa fa-edit" onclick="delPhoto({{ $photo->id_photo }}, this)" style="position: absolute;top: 10px;right: 45px;color: #fff;font-size: 1.3em;"></i>
+																					<i class="fa fa-trash" onclick="delPhoto({{ $photo->id_photo }}, this)" style="position: absolute;top: 0;right: 0;padding: 10px;color: #fff;font-size: 1.3em;background: #d52020;"></i>
                                        	</div>
                                         <div class="image" style="height: 140px;">
                                             <img alt="image" class="img-responsive" src="{{ json_decode($photo->pht_img)->min }}">
@@ -41,6 +41,22 @@
 <script>
 	function delPhoto(id, elem)
 	{
+		$.ajax({
+			url: '/api/photo/del',
+			type: 'POST',
+			dataType: 'html',
+			data: 'id=' + id,
+			success: function(result) {
+				var data = $.parseJSON(result);
+				if(data.goto){ window.location.href = data.goto; }
+				if(data.status == 'success'){					
+					alertify.success(data.text);
+				}
+				else{
+					alertify.error(data.text);
+				}
+			}
+		});
 		$(elem).parent().parent().parent().remove();
 	}
 </script>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Album;
 use App\Photo;
+use App\Comment;
 
 class AdminPageController extends Controller
 {
@@ -24,8 +25,11 @@ class AdminPageController extends Controller
 	
 	public function album(Request $request)
 	{
+		$albumName = Album::select('alb_name')->where('id_album', $request->id)->first();
 		$photos = Photo::select('id_photo', 'pht_img', 'pht_date')->where('pht_albumId', $request->id)->orderBy('pht_date', 'desc')->get();
 		return view('admin.album')->with([
+			'album' => $request->id,
+			'albumName' => $albumName->alb_name,
 			'photos' => $photos
 		]);
 	}
@@ -33,5 +37,38 @@ class AdminPageController extends Controller
 	public function addAlbum()
 	{
 		return view('admin.addAlbum');
+	}
+	
+	public function editAlbum(Request $request)
+	{
+		$album = Album::select('id_album', 'alb_name', 'alb_image')->where('id_album', $request->id)->first();
+		return view('admin.editAlbum')->with([
+			'album' => $album
+		]);
+	}
+	
+	public function addPhoto(Request $request)
+	{
+		return view('admin.addPhoto')->with([
+			'album' => $request->id
+		]);
+	}
+	
+	public function comments(Request $request)
+	{
+		return view('admin.comments');
+	}
+	
+	public function addComment(Request $request)
+	{
+		return view('admin.addComment');
+	}
+	
+	public function editComment(Request $request)
+	{
+		$comment = Comment::select('id_comment', 'cmt_name', 'cmt_email', 'cmt_text')->where('id_comment', $request->id)->first();
+		return view('admin.editComment')->with([
+			'comment' => $comment
+		]);
 	}
 }

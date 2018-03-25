@@ -91,10 +91,10 @@ class PageController extends Controller
 		]);
 	}
 	
-	public function reviews ()
+	public function comments ()
 	{
 		$comments = Comment::select('cmt_name', 'cmt_email', 'cmt_text', 'cmt_date')->orderBy('cmt_date', 'desc')->limit(10)->offset(0)->get();
-		return view('reviews')->with([
+		return view('comments')->with([
 			'comments' => $comments
 		]);
 	}
