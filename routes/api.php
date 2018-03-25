@@ -25,3 +25,7 @@ Route::post('/comment/addComment', 'Ajax\CommentController@addComment');
 Route::post('/comment/add', 'Ajax\CommentController@add');
 Route::post('/comment/del', 'Ajax\CommentController@del');
 Route::post('/comment/edit', 'Ajax\CommentController@edit');
+Route::get('/category/getAllCategories', 'Ajax\CategoryController@getAllCategories');
+Route::post('/category/add', 'Ajax\CategoryController@add');
+Route::post('/category/del', 'Ajax\CategoryController@del');
+Route::post('/category/edit', 'Ajax\CategoryController@edit');

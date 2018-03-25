@@ -98,6 +98,7 @@ class CommentController extends Controller
 			'text'=>'Отзыв удален'
 		), 200);
 	}
+	
 	public function edit (Request $request) 
 	{		
 		// Проверка все ли данные дошли

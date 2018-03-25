@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Album;
 use App\Photo;
 use App\Comment;
+use App\Category;
 
 class AdminPageController extends Controller
 {
@@ -54,12 +55,12 @@ class AdminPageController extends Controller
 		]);
 	}
 	
-	public function comments(Request $request)
+	public function comments()
 	{
 		return view('admin.comments');
 	}
 	
-	public function addComment(Request $request)
+	public function addComment()
 	{
 		return view('admin.addComment');
 	}
@@ -69,6 +70,24 @@ class AdminPageController extends Controller
 		$comment = Comment::select('id_comment', 'cmt_name', 'cmt_email', 'cmt_text')->where('id_comment', $request->id)->first();
 		return view('admin.editComment')->with([
 			'comment' => $comment
+		]);
+	}
+	
+	public function categories()
+	{
+		return view('admin.categories');
+	}
+	
+	public function addCategory()
+	{
+		return view('admin.addCategory');
+	}
+	
+	public function editCategory(Request $request)
+	{
+		$category = Category::select('id_category', 'ctg_name', 'ctg_page')->where('id_category', $request->id)->first();
+		return view('admin.editCategory')->with([
+			'category' => $category
 		]);
 	}
 }

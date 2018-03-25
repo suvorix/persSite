@@ -23,7 +23,7 @@ class PageController extends Controller
 	{
 		$content = Page::select('id_page', 'pg_name', 'pg_text')->where('pg_group', 'methodological')->first();
 		$pageCat = array();
-		$categories = Category::select('id_category', 'ctg_parentId', 'ctg_name', 'ctg_description')->where('ctg_page', 'methodological')->get();
+		$categories = Category::select('id_category', 'ctg_name')->where('ctg_page', 'methodological')->get();
 		foreach($categories as $category)
 		{
 			$catArr = array();
@@ -47,7 +47,7 @@ class PageController extends Controller
 	{
 		$content = Page::select('id_page', 'pg_name', 'pg_text')->where('pg_group', 'student')->first();
 		$pageCat = array();
-		$categories = Category::select('id_category', 'ctg_parentId', 'ctg_name', 'ctg_description')->where('ctg_page', 'student')->get();
+		$categories = Category::select('id_category', 'ctg_name')->where('ctg_page', 'student')->get();
 		foreach($categories as $category)
 		{
 			$catArr = array();
@@ -71,7 +71,7 @@ class PageController extends Controller
 	{
 		$content = Page::select('id_page', 'pg_name', 'pg_text')->where('pg_group', 'parents')->first();
 		$pageCat = array();
-		$categories = Category::select('id_category', 'ctg_parentId', 'ctg_name', 'ctg_description')->where('ctg_page', 'parents')->get();
+		$categories = Category::select('id_category', 'ctg_name')->where('ctg_page', 'parents')->get();
 		foreach($categories as $category)
 		{
 			$catArr = array();

@@ -1,17 +1,17 @@
 @extends('admin.layouts.mainAdminPageTemplate')
 
 
-@section('adminPageTitle', 'Все отзывы')
+@section('adminPageTitle', 'Все разделы')
 
 @section('adminPageContent')
 
 <div>
-	<a href="/admin/addComment" class="btn btn-primary">Новый отзыв</a>
+	<a href="/admin/addCategory" class="btn btn-primary">Новый раздел</a>
 </div>
 <br>
 <div class="ibox float-e-margins">
 		<div class="ibox-title">
-				<h5>Все отзывы</h5>
+				<h5>Все разделы</h5>
 		</div>
 		<div class="ibox-content">
 				<div class="table-responsive">
@@ -25,9 +25,8 @@
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>Имя</th>
-								<th>E-mail</th>
-								<th>Отзыв</th>
+								<th>Название</th>
+								<th>Страница</th>
 								<th>Действия</th>
 							</tr>
 						</thead>
@@ -65,31 +64,30 @@
 				}
 			},
 
-			"ajax": "/api/comment/getAllComments",
+			"ajax": "/api/category/getAllCategories",
 			"columns": [
-					{ "data": "id_comment" },
-					{ "data": "cmt_name" },
-					{ "data": "cmt_email" },
-					{ "data": "cmt_text" },
+					{ "data": "id_category" },
+					{ "data": "ctg_name" },
+					{ "data": "ctg_page" },
 					{ 
-						"data": "id_comment",
+						"data": "id_category",
 						"render": function ( data ) {
-							var edit = '<i class="fa fa-edit" onclick="editComment(' + data + ')"></i>';
-							var trash = '<i class="fa fa-trash" onclick="delComment(' + data + ', this)"></i>';
+							var edit = '<i class="fa fa-edit" onclick="editCategory(' + data + ')"></i>';
+							var trash = '<i class="fa fa-trash" onclick="delCategory(' + data + ', this)"></i>';
 							return edit + trash;
 						}
 					}
 				]
 		} );
 	} );
-	function editComment(id)
+	function editCategory(id)
 	{
-		window.location.href = '/admin/editComment/' + id;
+		window.location.href = '/admin/editCategory/' + id;
 	}
-	function delComment(id, elem)
+	function delCategory(id, elem)
 	{
 		$.ajax({
-			url: '/api/comment/del',
+			url: '/api/category/del',
 			type: 'POST',
 			dataType: 'html',
 			data: 'id=' + id,

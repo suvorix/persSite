@@ -28,6 +28,9 @@ Route::group(array('prefix' => 'admin'), function () {//, 'middleware' => ['web'
 	Route::get('/comments', 'AdminPageController@comments');
 	Route::get('/addComment', 'AdminPageController@addComment');
 	Route::get('/editComment/{id}', 'AdminPageController@editComment');
+	Route::get('/categories', 'AdminPageController@categories');
+	Route::get('/addCategory', 'AdminPageController@addCategory');
+	Route::get('/editCategory/{id}', 'AdminPageController@editCategory');
 	
 	
 });
