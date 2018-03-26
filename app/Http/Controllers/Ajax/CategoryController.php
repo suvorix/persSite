@@ -16,7 +16,7 @@ class CategoryController extends Controller
 								 );
 		return strip_tags(nl2br(json_encode($data, JSON_UNESCAPED_UNICODE)), '<br>');
 	}
-	
+		
 	public function add (Request $request) 
 	{		
 		// Проверка все ли данные дошли
@@ -61,6 +61,7 @@ class CategoryController extends Controller
 			'text'=>'Раздел удален'
 		), 200);
 	}
+	
 	public function edit (Request $request) 
 	{		
 		// Проверка все ли данные дошли

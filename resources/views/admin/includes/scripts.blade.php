@@ -13,6 +13,9 @@
 			$(idForm + ' button[type="submit"]').attr('disabled', true);
 			var $that = $(idForm);
 			var formData = new FormData($that.get(0));
+			if ($("#summernote").length){
+				formData.append("summernote", $('#summernote').summernote('code'));
+			}
 			$.ajax({
 				url: $(this).attr('action'),
 				type: 'POST',

@@ -8,6 +8,7 @@ use App\Album;
 use App\Category;
 use App\Page;
 use App\Comment;
+use App\User;
 
 class PageController extends Controller
 {
@@ -97,5 +98,25 @@ class PageController extends Controller
 		return view('comments')->with([
 			'comments' => $comments
 		]);
+	}
+	
+	public function login (Request $request)
+	{
+		$request->session()->put('login', $request->login);
+		$request->session()->put('password', $request->password);
+		$user = User::select('usr_permisson')->where([
+			'usr_login' => $request->login,
+			'usr_password' => md5($request->password)
+		])->first();
+		$request->session()->put('permission', $user->usr_permisson);
+		return redirect('/admin/home');
+	}
+	
+	public function logout (Request $request)
+	{
+		$request->session()->put('login', '');
+		$request->session()->put('password', '');
+		$request->session()->put('permission', '');
+		return redirect('');
 	}
 }

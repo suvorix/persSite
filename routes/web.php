@@ -16,6 +16,8 @@ Route::get('/methodological', 'PageController@methodological');
 Route::get('/student', 'PageController@student');
 Route::get('/parents', 'PageController@parents');
 Route::get('/comments', 'PageController@comments');
+Route::post('/login', 'PageController@login');
+Route::get('/logout', 'PageController@logout');
 
 Route::group(array('prefix' => 'admin'), function () {//, 'middleware' => ['web']
 	
@@ -31,6 +33,9 @@ Route::group(array('prefix' => 'admin'), function () {//, 'middleware' => ['web'
 	Route::get('/categories', 'AdminPageController@categories');
 	Route::get('/addCategory', 'AdminPageController@addCategory');
 	Route::get('/editCategory/{id}', 'AdminPageController@editCategory');
+	Route::get('/pages', 'AdminPageController@pages');
+	Route::get('/addPage', 'AdminPageController@addPage');
+	Route::get('/editPage/{id}', 'AdminPageController@editPage');
 	
 	
 });

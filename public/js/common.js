@@ -99,11 +99,7 @@ $(document).ready(function(){
 		$('.sign_form .sign_content').empty();
 		if($(this).hasClass('sign_button_main')){
 			$('.sign_form h2').text('Вход');
-			$('.sign_form .sign_content').append('<p><input type="email" placeholder="Введите E-mail..."></p><p><input type="password" placeholder="Введите пароль..."></p><p><button>Авторизироваться</button></p>');
-		}
-		else{
-			$('.sign_form h2').text('Регистрация');
-			$('.sign_form .sign_content').append('<p><input type="text" placeholder="Введите имя..."></p><p><input type="email" placeholder="Введите E-mail..."></p><p><input type="password" placeholder="Введите пароль..."></p><p><input type="password" placeholder="Повторите пароль..."></p><p><button>Зарегестрироваться</button></p>');
+			$('.sign_form .sign_content').append('<p><input type="text" name="login" placeholder="Введите логин..."></p><p><input type="password" name="password" placeholder="Введите пароль..."></p><p><button>Авторизироваться</button></p>');
 		}
 		$('.sign_dark').removeClass('hidden');
 		$('body').css('overflow-y', 'hidden');

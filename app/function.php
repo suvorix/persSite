@@ -71,3 +71,20 @@ function saveImageFILE($file)
 	}
 	return $fileName.$fileType;
 }
+function adminCheck($request)
+{
+	$user = User::select('usr_permisson')->where([
+			'usr_login' => $request->session()->get('login'),
+			'usr_password' => md5($request->session()->get('password'))
+		])->first();
+		if(isset($user)){
+			if($user->usr_permisson != 'admin')
+			{
+				return redirect('');
+			}
+		}
+		else
+		{
+			return redirect('');
+		}
+}

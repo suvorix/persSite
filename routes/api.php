@@ -29,3 +29,7 @@ Route::get('/category/getAllCategories', 'Ajax\CategoryController@getAllCategori
 Route::post('/category/add', 'Ajax\CategoryController@add');
 Route::post('/category/del', 'Ajax\CategoryController@del');
 Route::post('/category/edit', 'Ajax\CategoryController@edit');
+Route::get('/page/getAllPages', 'Ajax\PageController@getAllPages');
+Route::post('/page/add', 'Ajax\PageController@add');
+Route::post('/page/del', 'Ajax\PageController@del');
+Route::post('/page/edit', 'Ajax\PageController@edit');
