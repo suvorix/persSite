@@ -3,3 +3,5 @@
 	<link rel="stylesheet" href="/libs/swiper/swiper.min.css">
 	<script type="text/javascript" src="/libs/swiper/swiper.min.js"></script>
 	<script type="text/javascript" src="/js/scripts.min.js"></script>
+	<!-- Alertify js -->
+	<script defer src="/admin/js/plugins/alertify/js/alertify.js"></script>

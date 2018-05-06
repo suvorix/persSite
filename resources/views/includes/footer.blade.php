@@ -14,14 +14,15 @@
 				<h2>Страницы сайта</h2>
 				@include('includes.link')
 			</nav>
-			<div class="footer_feedback">
+			<form action="/api/mail/send" method="post" class="suv-ajax footer_feedback" id="mailSend">
+				<input type="hidden" name="contact_secret" value="9320087105434084715">
 				<h2>Напишите мне</h2>
 				<div style="display: flex;">
-					<p style="flex: 1;margin-right: 10px;"><input type="text" placeholder="Введите имя..."></p>
-					<p style="flex: 1;margin-left: 10px;"><input type="email" placeholder="Введите E-mail..."></p>
+					<p style="flex: 1;margin-right: 10px;"><input type="text" name="name" placeholder="Введите имя..."></p>
+					<p style="flex: 1;margin-left: 10px;"><input type="email" name="email" placeholder="Введите E-mail..."></p>
     		</div>
-				<p><textarea placeholder="Введите сообщение..."></textarea></p>
-				<p><button>Отправить</button></p>
-			</div>
+				<p><textarea name="message" placeholder="Введите сообщение..."></textarea></p>
+				<p><button type="submit">Отправить</button></p>
+			</form>
 		</div>
 	</footer>

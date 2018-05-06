@@ -1,4 +1,40 @@
 $(document).ready(function(){
+	$('form.suv-ajax').submit(function(){
+		var idForm = '#' + $(this).attr('id');
+		$(idForm + ' button[type="submit"]').attr('disabled', true);
+		var $that = $(idForm);
+		var formData = new FormData($that.get(0));
+		if ($("#summernote").length){
+			formData.append("summernote", $('#summernote').summernote('code'));
+		}
+		$.ajax({
+			url: $(this).attr('action'),
+			type: 'POST',
+			dataType: 'text',
+			data: formData,
+			contentType: false,
+			processData: false,
+			headers: {
+				'X-CSRF-Token': $('meta[name="_token"]').attr('content')
+			},
+			success: function(result) {
+				var data = $.parseJSON(result);
+				if(data.goto){ window.location.href = data.goto; }
+				if(data.status == 'success'){
+				alertify.success(data.text);
+				}
+				else{
+					alertify.error(data.text);
+				}
+			},
+			complete: function(){
+				$(idForm + ' button[type="submit"]').attr('disabled', false);
+				$(idForm + ' button[type="reset"]').click();
+			}
+		});
+		return false;
+	});
+	
 	$('.main').css({'margin-bottom': ($('.footer').height() + 80) + 'px'});
 	$(window).resize(function(){
 		$('.main').css({'margin-bottom': ($('.footer').height() + 80) + 'px'});
