@@ -17,6 +17,18 @@ class CommentController extends Controller
 		return strip_tags(nl2br(json_encode($data, JSON_UNESCAPED_UNICODE)), '<br>');
 	}
 	
+	public function getNextComments (Request $request) 
+	{
+		$comments = Comment::select('id_comment', 'cmt_name', 'cmt_email', 'cmt_text')->orderBy('cmt_date', 'desc')->offset($request->startPos)->limit(10)->get();
+		$data = '';
+		foreach($comments as $comment)
+		{
+			$data .= '<div class="review"><h4 class="user_info">'.$comment->cmt_name.'<span class="color-accent">&nbsp;/&nbsp;</span><span class="user-email">'.$comment->cmt_email.'</span></h4><p>'.strip_tags(nl2br($comment->cmt_text), '<br>').'</p></div>';
+		}
+		
+		return $data;
+	}
+	
 	public function add (Request $request) 
 	{		
 		// Проверка все ли данные дошли

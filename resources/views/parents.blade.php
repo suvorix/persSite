@@ -43,3 +43,26 @@
 		</section>
 	</main>
 @endsection
+
+@section('pageScripts')
+	<script>
+		$(document).ready(function(){
+			$('p[data-pageID]').click(function(){
+				var id = $(this).attr('data-pageID');
+				$.ajax({
+					type: 'POST',
+					url: '/api/page/getPage',
+					data: 'id=' + id,
+					success: function(result)
+					{
+						$('.t-c_content').empty();
+						$('.t-c_content').append(result.data);
+					},
+					error: function(){
+							console.error('AJAX Fatal error');
+					}
+				});
+			});
+		});
+	</script>
+@endsection

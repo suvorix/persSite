@@ -58,7 +58,7 @@
 					success: function(result)
 					{
 						$('.t-c_content').empty();
-						$('.t-c_content').append(result.data.pg_text);
+						$('.t-c_content').append(result.data);
 					},
 					error: function(){
 							console.error('AJAX Fatal error');

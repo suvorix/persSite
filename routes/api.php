@@ -27,6 +27,7 @@ Route::group(array('prefix' => 'photo'), function (){
 
 Route::group(array('prefix' => 'comment'), function (){
 	Route::get('/getAllComments', 'Ajax\CommentController@getAllComments');
+	Route::post('/getNextComments', 'Ajax\CommentController@getNextComments');
 	Route::post('/addComment', 'Ajax\CommentController@addComment');
 	Route::post('/add', 'Ajax\CommentController@add');
 	Route::post('/del', 'Ajax\CommentController@del');

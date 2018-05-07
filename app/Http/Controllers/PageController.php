@@ -100,6 +100,60 @@ class PageController extends Controller
 		]);
 	}
 	
+	public function sitemap ()
+	{
+		$pageCat1 = array();
+		$categories1 = Category::select('id_category', 'ctg_name')->where('ctg_page', 'methodological')->get();
+		foreach($categories1 as $category)
+		{
+			$catArr = array();
+			$pageInfo = Page::select('id_page', 'pg_name')->where('pg_catId', $category->id_category)->orderBy('pg_date', 'asc')->get();
+			array_push($catArr, $category);
+			array_push($catArr, $pageInfo);
+			array_push($pageCat1, $catArr);			
+		}
+		$pageNoCat1 = Page::select('id_page', 'pg_name')->where([
+			['pg_catId', 0],
+			['pg_group', 'methodological']
+		])->orderBy('pg_date', 'asc')->get();
+		$pageCat2 = array();
+		$categories2 = Category::select('id_category', 'ctg_name')->where('ctg_page', 'student')->get();
+		foreach($categories2 as $category)
+		{
+			$catArr = array();
+			$pageInfo = Page::select('id_page', 'pg_name')->where('pg_catId', $category->id_category)->orderBy('pg_date', 'asc')->get();
+			array_push($catArr, $category);
+			array_push($catArr, $pageInfo);
+			array_push($pageCat2, $catArr);			
+		}
+		$pageNoCat2 = Page::select('id_page', 'pg_name')->where([
+			['pg_catId', 0],
+			['pg_group', 'student']
+		])->orderBy('pg_date', 'asc')->get();
+		$pageCat3 = array();
+		$categories3 = Category::select('id_category', 'ctg_name')->where('ctg_page', 'parents')->get();
+		foreach($categories3 as $category)
+		{
+			$catArr = array();
+			$pageInfo = Page::select('id_page', 'pg_name')->where('pg_catId', $category->id_category)->orderBy('pg_date', 'asc')->get();
+			array_push($catArr, $category);
+			array_push($catArr, $pageInfo);
+			array_push($pageCat3, $catArr);			
+		}
+		$pageNoCat3 = Page::select('id_page', 'pg_name')->where([
+			['pg_catId', 0],
+			['pg_group', 'parents']
+		])->orderBy('pg_date', 'asc')->get();
+		return view('sitemap')->with([
+			'sidebarListPageCat1' => $pageCat1,
+			'sidebarListPageNoCat1' => $pageNoCat1,
+			'sidebarListPageCat2' => $pageCat2,
+			'sidebarListPageNoCat2' => $pageNoCat2,
+			'sidebarListPageCat3' => $pageCat3,
+			'sidebarListPageNoCat3' => $pageNoCat3
+		]);
+	}
+	
 	public function login (Request $request)
 	{
 		$request->session()->put('login', $request->login);

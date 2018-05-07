@@ -35,5 +35,31 @@
 @endsection
 
 @section('pageScripts')
-<script defer src='https://www.google.com/recaptcha/api.js'></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+	$(document).ready(function(){
+		var startPos = 10;
+		var inProgress = false;
+		$(window).scroll(function(){
+			if( $(window).scrollTop() + $(window).height() + 20 >= $(document).height()  && !inProgress ){
+				$.ajax({
+					url: '/api/comment/getNextComments',
+					method: 'POST',
+					data: 'startPos=' + startPos,
+					beforeSend: function(){
+						inProgress = true;
+					},
+					cache: false,
+					success: function(data){
+						$('.reviews').append(data);
+						if(data != ''){
+							startPos += 10;
+							inProgress = false;
+						}
+					}
+				});
+			}
+		});
+	});
+</script>
 @endsection

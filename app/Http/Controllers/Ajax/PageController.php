@@ -15,7 +15,7 @@ class PageController extends Controller
 		$page = Page::select('pg_text')->where('id_page', $request->id)->orderBy('pg_date', 'desc')->first();
 		return response()->json(array(
 			'status'=>'success',
-			'data'=>$page
+			'data'=>$page->pg_text
 		), 200);
 	}
 	public function getAllPages () 

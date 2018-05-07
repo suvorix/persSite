@@ -10,8 +10,8 @@ class MailController extends Controller
 	public function send(Request $request)
 	{
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-			$from = 'pers@mail.ru';
-			$to = $request->email;
+			$from = $request->email;
+			$to = 'pers@mail.ru';
 			$ip = getIP();
 			sendMessage($from, $to, $ip, $request->name, $request->message, $request->contact_secret);
 			return response()->json(array(

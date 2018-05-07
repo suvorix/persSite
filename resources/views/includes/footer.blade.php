@@ -3,7 +3,7 @@
 			<div class="footer_info">
 				<h2>Карпушева Ирина Александровна</h2>
 				<p><i>Высшее образование, Нижегородский государственный педагогический университет им. Козьмы Минина. Десять лет педагогического стажа работы.	Первая квалификационная категория.</i></p>
-				<p><a href="/sitemap/">Карта сайта</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/sitemap/">Ссылка 2</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/sitemap/">Ссылка 3</a></p><br>
+				<p><a href="{{ url('sitemap') }}">Карта сайта</a></p><br>
 				<!-- Yandex.Metrika informer -->
 				<a href="https://metrika.yandex.ru/stat/?id=46875573&amp;from=informer"
 				target="_blank" rel="nofollow"><img src="https://informer.yandex.ru/informer/46875573/3_1_FFFFFFFF_FFFFFFFF_0_pageviews"

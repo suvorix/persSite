@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Category;
+use App\Page;
 
 class CategoryController extends Controller
 {
@@ -54,7 +55,7 @@ class CategoryController extends Controller
 		
 		Category::where('id_category', $request->id)->delete();
 		
-		// ДОБАВИТЬ ПРОВЕРКУ ЕСТЬ ЛИ ПРЕКРЕПЛЁНЫЕ СТРАНИЦЫ К ДАННОМУ РАЗДЕЛУ И ОТКРЕПИТЬ ИХ
+		Page::where('pg_catId', $request->id)->update(['pg_catId'=>0]);
 		
 		return response()->json(array(
 			'status'=>'success',

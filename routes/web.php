@@ -16,6 +16,7 @@ Route::get('/methodological', 'PageController@methodological');
 Route::get('/student', 'PageController@student');
 Route::get('/parents', 'PageController@parents');
 Route::get('/comments', 'PageController@comments');
+Route::get('/sitemap', 'PageController@sitemap');
 Route::post('/login', 'PageController@login');
 Route::get('/logout', 'PageController@logout');
 
